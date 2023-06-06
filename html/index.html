@@ -55,6 +55,25 @@
         margin-bottom: 10px;
         display: none; 
     }
+    #miElemento {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: relative;
+    }
+
+    .animado {
+      animation-duration: 2s;
+      animation-name: mover;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes mover {
+      0% { left: 0; }
+      50% { left: 200px; top: 200px; }
+      100% { left: 0; }
+    }
+
   </style>
 
 </head>
@@ -197,31 +216,26 @@
                 </script>
 
                 <h3>Demo</h3>
-                <button onclick="toggleResult()">Mostrar resultado</button>
-                <div class="containerG" id="containerG">
-                    <div id="animate"></div>
-                    <!-- Contenido del resultado -->
-                </div>
+                <br>
+                <div id="miElemento" class="animado"></div>
+                <button onclick="animarElemento()">Animar</button>
+                <br><br><br><br><br><br><br><br>
+
                 <script>
-                    let isVisible = false;
-                    function toggleResult() {
-                      const containerG = document.getElementById('containerG');
-                      const animate = document.getElementById('animate');
+                    var animacionIniciada = false;
 
-                // Alternar la visibilidad del contenido
-                      isVisible = !isVisible;
-                      containerG.style.display = isVisible ? 'none' : 'block';
+                    function animarElemento() {
+                      var elemento = document.getElementById("miElemento");
 
-                // Cambiar la posición de la bolita al hacer clic en ella
-                      animate.onclick = function() {
-                        const maxX = containerG.offsetWidth - animate.offsetWidth;
-                        const maxY = containerG.offsetHeight - animate.offsetHeight;
-                        const newX = Math.floor(Math.random() * maxX);
-                        const newY = Math.floor(Math.random() * maxY);
-                        animate.style.left = newX + 'px';
-                        animate.style.top = newY + 'px';
-                    };
-                }
+                      if (!animacionIniciada) {
+                        elemento.classList.add("animado");
+                        animacionIniciada = true;
+                      } else {
+                        elemento.classList.remove("animado");
+                        animacionIniciada = false;
+                      }
+                    }
+
             </script>
 
                         <!--//docs-code-block-->
