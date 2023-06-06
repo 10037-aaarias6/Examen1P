@@ -659,49 +659,130 @@
                   </div>
 
 
-<h3>Demo</h3>
 
 
-<button onclick="toggleResultE()">Mostrar resultado</button>
+                <h3>Demo</h3>
 
-<span id="result4" style="display: none;">
-  <h2>FRUTAS</h2>
-  <ul id="myList4">
-    <li>Manzana</li>
-    <li>Plátano</li>
-    <li>Naranja</li>
-    <li>Mango</li>
-  </ul>
-  <button onclick="changeListItems()">Cambiar elementos de lista</button>
-</span>
 
-<script>
-function changeListItems() {
-  const myList = document.getElementById("myList4");
-  const listItems = myList.getElementsByTagName("li");
-  for (let i = 0; i < listItems.length; i++) {
-    listItems[i].style.color = "blue";
-    listItems[i].style.fontWeight = "bold";
-  }
-}
+                <button onclick="toggleResultE()">Mostrar resultado</button>
 
-function toggleResultE() {
-  const resultElement = document.getElementById("result4");
-  if (resultElement.style.display === "none") {
-    resultElement.style.display = "inline";
-  } else {
-    resultElement.style.display = "none";
-  }
-}
-</script>
+                <span id="result4" style="display: none;">
+                  <h2>FRUTAS</h2>
+                  <ul id="myList4">
+                    <li>Manzana</li>
+                    <li>Plátano</li>
+                    <li>Naranja</li>
+                    <li>Mango</li>
+                  </ul>
+                  <button onclick="changeListItems()">Cambiar elementos de lista</button>
+                </span>
+
+                <script>
+                function changeListItems() {
+                  const myList = document.getElementById("myList4");
+                  const listItems = myList.getElementsByTagName("li");
+                  for (let i = 0; i < listItems.length; i++) {
+                    listItems[i].style.color = "blue";
+                    listItems[i].style.fontWeight = "bold";
+                  }
+                }
+
+                function toggleResultE() {
+                  const resultElement = document.getElementById("result4");
+                  if (resultElement.style.display === "none") {
+                    resultElement.style.display = "inline";
+                  } else {
+                    resultElement.style.display = "none";
+                  }
+                }
+                </script>
 
 
                         <section class="docs-section" id="item-1-7">
                         <h2 class="section-heading">DOM Node List</h2>
                          <p>El DOM NodeList es una colección ordenada de nodos devuelta por métodos de consulta en el Modelo de Objeto de Documento (DOM). Aunque no es un array, se puede iterar utilizando bucles o métodos de iteración como forEach(). Proporciona acceso a nodos individuales mediante índices y facilita la manipulación de múltiples nodos simultáneamente. Es especialmente útil para realizar operaciones en lote, como modificar estilos, agregar o eliminar clases, acceder a atributos o realizar otras acciones en el contenido de un documento. Además, el NodeList permite conocer el número total de nodos en la lista y proporciona métodos y propiedades adicionales para la manipulación y navegación de los nodos. </p>
 
+
+                        <!--//docs-intro-->
+                        <h4 class="heading" style="padding-top:1%">Ejemplo</h4>
+
+                        <div class="docs-code-block">
+                            <pre class="shadow-lg rounded"><code class="javascript hljs">
+                               &lt;!DOCTYPE html&gt;
+                                &lt;html&gt;
+                                &lt;body&gt;
+
+                                &lt;h2&gt;TEXT&lt;/h2&gt;
+
+                                &lt;div id="myDiv"&gt;
+                                  &lt;p&gt;Paragraph 1&lt;/p&gt;
+                                  &lt;p&gt;Paragraph 2&lt;/p&gt;
+                                  &lt;p&gt;Paragraph 3&lt;/p&gt;
+                                &lt;/div&gt;
+
+                                &lt;button onclick="changeParagraphs()"&gt;Change Paragraphs&lt;/button&gt;
+
+                                &lt;script&gt;
+                                function changeParagraphs() {
+                                  const myDiv = document.getElementById("myDiv");
+                                  const paragraphs = myDiv.querySelectorAll("p");
+                                  paragraphs.forEach(function(paragraph) {
+                                    paragraph.style.backgroundColor = "yellow";
+                                    paragraph.style.fontWeight = "bold";
+                                  });
+                                }
+                                &lt;/script&gt;
+
+                                &lt;/body&gt;
+                                &lt;/html&gt;
+
+                      </code></pre>
+                  </div>
+
+
 <h3>Demo</h3>
 <button onclick="toggleResultF()">Mostrar resultado</button><br><br>
+
+<p id="result" style="display: none;"></p>
+
+<script>
+function toggleResultF() {
+  const result = document.getElementById("result");
+  const myDiv = document.getElementById("myDiv");
+  const button = document.getElementById("changeButton");
+
+  if (result.style.display === "none") {
+    myDiv.style.display = "block";
+    button.style.display = "block";
+    result.style.display = "block";
+    result.innerHTML = "";
+  } else {
+    myDiv.style.display = "none";
+    button.style.display = "none";
+    result.style.display = "none";
+  }
+}
+
+function changeParagraphs() {
+  const myDiv = document.getElementById("myDiv");
+  const paragraphs = myDiv.querySelectorAll("p");
+  paragraphs.forEach(function(paragraph) {
+    paragraph.style.backgroundColor = "yellow";
+    paragraph.style.fontWeight = "bold";
+  });
+}
+</script>
+
+
+
+<div id="myDiv" style="display: none;">
+  <h2>TEXT</h2>
+  <p>Paragraph 1</p>
+  <p>Paragraph 2</p>
+  <p>Paragraph 3</p>
+</div>
+
+<button id="changeButton" onclick="changeParagraphs()" style="display: none;">Change Paragraphs</button>
 
 
 
