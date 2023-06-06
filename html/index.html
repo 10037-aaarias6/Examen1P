@@ -55,38 +55,6 @@
         margin-bottom: 10px;
         display: none; 
     }
-    #miElemento {
-      width: 100px;
-      height: 100px;
-      background-color: red;
-      position: relative;
-    }
-
-    .animado {
-      animation-duration: 2s;
-      animation-name: mover;
-      animation-iteration-count: infinite;
-    }
-
-    @keyframes mover {
-      0% { left: 0; }
-      50% { left: 200px; top: 200px; }
-      100% { left: 0; }
-    }
-
-    #container1 {
-      width: 400px;
-      height: 150px;
-      position: relative;
-      background: yellow;
-    }
-    #animate1 {
-      width: 50px;
-      height: 50px;
-      position: absolute;
-      background-color: red;
-    }
-
   </style>
 
 </head>
@@ -176,63 +144,47 @@
                                 &lt;style&gt;
                                 #container {
                                   width: 400px;
-                                  height: 150px;
+                                  height: 400px;
                                   position: relative;
-                                  background: yellow;
-                                }
-                                #animate {
+                                  background: #f2f2f2;
+                              }
+                              #animate {
                                   width: 50px;
                                   height: 50px;
                                   position: absolute;
-                                  background-color: red;
-                                }
-                                &lt;/style&gt;
-                                &lt;body&gt;
+                                  background-color: #ff0000;
+                                  border-radius: 50%;
+                              }
+                              &lt;/style&gt;
+                              &lt;body&gt;
 
-                                &lt;p&gt;&lt;button onclick="myMove()"&gt;Click Me&lt;/button&gt;&lt;/p&gt; 
+                              &lt;p&gt;&lt;button onclick="myMove()"&gt;Click Me&lt;/button&gt;&lt;/p&gt; 
 
-                                &lt;div id="container1"&gt;
-                                  &lt;div id="animate1"&gt;&lt;/div&gt;
-                                &lt;/div&gt;
+                              &lt;div id="container"&gt;
+                              &lt;div id="animate"&gt;&lt;/div&gt;
+                              &lt;/div&gt;
 
-                                &lt;script&gt;
-                                function myMove() {
+                              &lt;script&gt;
+                              function myMove() {
                                   let id = null;
                                   const elem = document.getElementById("animate");   
-                                  let posX = 0;
-                                  let posY = 0;
-                                  let directionX = 1;
-                                  let directionY = 1;
+                                  let pos = 0;
                                   clearInterval(id);
-                                  id = setInterval(frame, 10);
-                                  
+                                  id = setInterval(frame, 5);
                                   function frame() {
-                                    if (posX === 350 && posY === 350) {
+                                    if (pos == 350) {
                                       clearInterval(id);
-                                    } else {
-                                      posX += directionX;
-                                      posY += directionY;
-                                      
-                                      if (posX === 350 || posX === 0) {
-                                        directionX *= -1;
-                                      }
-                                      
-                                      elem.style.left = posX + "px";
-                                      
-                                      if (posX % 100 === 0) {
-                                        directionY *= -1;
-                                      }
-                                      
-                                      elem.style.top = posY + "px";
-                                    }
+                                  } else {
+                                      pos++; 
+                                      elem.style.top = pos + "px"; 
+                                      elem.style.left = pos + "px"; 
                                   }
-                                }
-                                &lt;/script&gt;
+                              }
+                          }
+                          &lt;/script&gt;
 
-                                &lt;/body&gt;
-                                &lt;/html&gt;
-                                
- 
+                          &lt;/body&gt;
+                          &lt;/html&gt;
                       </code></pre>
                   </div>
                   <script>
@@ -240,46 +192,31 @@
                 </script>
 
                 <h3>Demo</h3>
-                <br>
-                <p><button onclick="myMove()">Animar</button></p> 
-
-                <div id="container1">
-                  <div id="animate1"></div>
+                <button onclick="toggleResult()">Mostrar resultado</button>
+                <div class="containerG" id="containerG">
+                    <div id="animate"></div>
+                    <!-- Contenido del resultado -->
                 </div>
-
                 <script>
-                    function myMove() {
-                      let id = null;
-                      const elem = document.getElementById("animate1");   
-                      let posX = 0;
-                      let posY = 0;
-                      let directionX = 1;
-                      let directionY = 1;
-                      clearInterval(id);
-                      id = setInterval(frame, 10);
-                      
-                      function frame() {
-                        if (posX === 350 && posY === 350) {
-                          clearInterval(id);
-                        } else {
-                          posX += directionX;
-                          posY += directionY;
-                          
-                          if (posX === 350 || posX === 0) {
-                            directionX *= -1;
-                          }
-                          
-                          elem.style.left = posX + "px";
-                          
-                          if (posX % 100 === 0) {
-                            directionY *= -1;
-                          }
-                          
-                          elem.style.top = posY + "px";
-                        }
-                      }
-                    }
+                    let isVisible = false;
+                    function toggleResult() {
+                      const containerG = document.getElementById('containerG');
+                      const animate = document.getElementById('animate');
 
+                // Alternar la visibilidad del contenido
+                      isVisible = !isVisible;
+                      containerG.style.display = isVisible ? 'none' : 'block';
+
+                // Cambiar la posición de la bolita al hacer clic en ella
+                      animate.onclick = function() {
+                        const maxX = containerG.offsetWidth - animate.offsetWidth;
+                        const maxY = containerG.offsetHeight - animate.offsetHeight;
+                        const newX = Math.floor(Math.random() * maxX);
+                        const newY = Math.floor(Math.random() * maxY);
+                        animate.style.left = newX + 'px';
+                        animate.style.top = newY + 'px';
+                    };
+                }
             </script>
 
                         <!--//docs-code-block-->
