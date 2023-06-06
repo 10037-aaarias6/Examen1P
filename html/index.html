@@ -83,6 +83,9 @@
     .new-paragraph {
       padding: 10px;
     }
+    #agregarBtn {
+      display: none;
+    }
   </style>
 
 </head>
@@ -522,7 +525,53 @@
                         <h2 class="section-heading">DOM Nodes</h2>
                          <p>Los DOM Nodes son los elementos individuales que componen la estructura de un documento HTML o XML. Cada elemento, atributo, texto y comentario en un documento se representa como un nodo en el árbol del DOM. Los nodos del DOM pueden tener relaciones jerárquicas entre sí, formando una estructura en forma de árbol, donde cada nodo tiene un padre, hijos y posiblemente hermanos. Los diferentes tipos de nodos incluyen elementos HTML, texto, comentarios, atributos y más. Los nodos del DOM son la base para acceder, manipular y modificar la estructura y contenido de un documento web utilizando JavaScript u otras tecnologías basadas en el DOM. </p>
                         <h3>Demo</h3>
-<button onclick="toggleResultD()">Mostrar resultado</button><br><br>
+
+                        <button onclick="toggleResultD()">Mostrar resultado</button>
+                          <br><br>
+                          <div id="resultado" style="display: none;">
+                            <!-- Aquí se mostrará el resultado -->
+                            <div id="contenedor">
+                              <!-- Aquí se agregarán los elementos de lista creados dinámicamente -->
+                            </div>
+                          </div>
+                          <button id="agregarBtn" onclick="agregarLista()">Agregar Lista</button>
+
+                            <script>
+                            function agregarLista() {
+                              // Crear un nuevo elemento de tipo <ul>
+                              var ulNode = document.createElement("ul");
+
+                              // Crear un array con los textos de los elementos de lista
+                              var elementos = ["Elemento 1", "Elemento 2", "Elemento 3"];
+
+                              // Iterar sobre el array y crear elementos de lista <li>
+                              elementos.forEach(function(texto) {
+                                var liNode = document.createElement("li");
+                                var textoNode = document.createTextNode(texto);
+                                liNode.appendChild(textoNode);
+                                ulNode.appendChild(liNode);
+                              });
+
+                              // Obtener el elemento existente donde se va a agregar la lista
+                              var contenedor = document.getElementById("contenedor");
+
+                              // Agregar la lista al contenedor
+                              contenedor.appendChild(ulNode);
+                            }
+
+                            function toggleResultD() {
+                              var resultDiv = document.getElementById("resultado");
+                              var agregarBtn = document.getElementById("agregarBtn");
+
+                              if (resultDiv.style.display === "none") {
+                                resultDiv.style.display = "block";
+                                agregarBtn.style.display = "inline-block";
+                              } else {
+                                resultDiv.style.display = "none";
+                                agregarBtn.style.display = "none";
+                              }
+                            }
+                          </script>
 
                         <section class="docs-section" id="item-1-6">
                         <h2 class="section-heading">DOM Collections</h2>
