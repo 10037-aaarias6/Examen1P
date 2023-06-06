@@ -70,7 +70,7 @@
                         <span></span>
                         <span></span>
                     </button>
-                    <div class="site-logo"><a class="navbar-brand" href="index.html"><img class="logo-icon me-2"
+                    <div class="site-logo"><a class="navbar-brand" href="../index.html"><img class="logo-icon me-2"
                                 src="../assets/images/coderdocs-logo.svg" alt="logo"><span class="logo-text">Grupo <span
                                     class="text-alt">Nro. 5</span></span></a></div>
                 </div>
@@ -224,9 +224,18 @@
 
                     
  <!--//--------------------------------------------------------------------------------------------------------------------------------->
-                    <section class="docs-section" id="item-1-1">
+                    <section class="docs-section" id="item-1-2">
                         <h2 class="section-heading">DOM Events</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean rhoncus sodales mollis. Suspendisse laoreet sapien quis lectus tincidunt aliquam. Nulla blandit tortor et justo condimentum, vitae tempor velit congue. Sed consectetur viverra est sed ultrices. Nulla condimentum erat velit, a consectetur nunc euismod in. Sed tincidunt nunc nec imperdiet egestas. Nunc gravida facilisis lorem, eu pellentesque augue. Nulla eu felis a est fringilla elementum. Donec fermentum ex odio, molestie dictum dui rutrum vel. Ut et lectus sit amet quam viverra auctor quis a ante. Vivamus convallis mollis diam ac scelerisque. Cras commodo urna fringilla, porttitor erat a, viverra quam. Proin ut odio dignissim, pulvinar leo vitae, euismod tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In at nunc sit amet libero euismod euismod a vitae purus. </p>
+                        <p>Los eventos del DOM son acciones o sucesos que ocurren en elementos de una página web en respuesta a la interacción del usuario o a condiciones específicas. Permiten que la página web sea interactiva y responda a las acciones del usuario, como hacer clic en un elemento, mover el cursor sobre un elemento o enviar un formulario. Para manejar los eventos, se utilizan event listeners, que son funciones que se ejecutan cuando ocurre un evento específico en un elemento. Los eventos del DOM son fundamentales para crear páginas web dinámicas y mejorar la experiencia del usuario.</p><br>
+                        <p>Ejemplos de eventos HTML:<br>
+
+                            1.Cuando un usuario hace clic con el mouse<br>
+                            2.Cuando una página web ha cargado<br>
+                            3.Cuando se ha cargado una imagen<br>
+                            4.Cuando el mouse se mueve sobre un elemento<br>
+                            5.Cuando se cambia un campo de entrada<br>
+                            6.Cuando se envía un formulario HTML<br>
+                            7.Cuando un usuario pulsa una tecla</p>
                     </section>
 
 
@@ -300,7 +309,46 @@
                     box2.addEventListener('mouseleave', function() {
                       box2.style.transform = 'scale(1)';
                   });
+                    function toggleResult() {
+    if (box1.style.display === 'none') {
+      box1.style.display = 'block';
+      box2.style.display = 'block';
+    } else {
+      box1.style.display = 'none';
+      box2.style.display = 'none';
+    }
+  }
                </script>
+
+              
+                 <section class="docs-section" id="item-1-3">
+                        <h2 class="section-heading">DOM Event Listener</h2>
+                        <h3>Demo</h3>
+<button onclick="toggleResult()">Mostrar resultado</button><br><br>
+
+                        <section class="docs-section" id="item-1-4">
+                        <h2 class="section-heading">DOM Navigation</h2>
+                        <h3>Demo</h3>
+<button onclick="toggleResult()">Mostrar resultado</button><br><br>
+
+                        <section class="docs-section" id="item-1-5">
+                        <h2 class="section-heading">DOM Nodes</h2>
+                        <h3>Demo</h3>
+<button onclick="toggleResult()">Mostrar resultado</button><br><br>
+
+                        <section class="docs-section" id="item-1-6">
+                        <h2 class="section-heading">DOM Collections</h2>
+<h3>Demo</h3>
+<button onclick="toggleResult()">Mostrar resultado</button><br><br>
+
+                        <section class="docs-section" id="item-1-7">
+                        <h2 class="section-heading">DOM Node List</h2>
+
+<h3>Demo</h3>
+<button onclick="toggleResult()">Mostrar resultado</button><br><br>
+
+
+
 
                     <footer class="footer">
                         <div class="container text-center py-5">
