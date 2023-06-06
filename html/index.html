@@ -27,6 +27,36 @@
     <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
     <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/default.min.css">
+<script src="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/lib/highlight.min.js"></script>
+
+<style>
+    .containerG {
+      width: 400px;
+      height: 400px;
+      position: relative;
+      background: #f2f2f2;
+      margin-top: 10px;
+      display: none; 
+    }
+    #animate {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      background-color: #ff0000;
+      border-radius: 50%;
+      transition: top 1s, left 1s;
+    }
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        margin-bottom: 10px;
+        display: none; 
+    }
+  </style>
+
 </head>
 
 <body class="docs-page">
@@ -76,7 +106,13 @@
                 <ul class="section-items list-unstyled nav flex-column pb-3">
                     <li class="nav-item section-title"><a class="nav-link scrollto active" href="#section-1"><span
                                 class="theme-icon-holder me-2"><i class="fas fa-map-signs"></i></span>Tema</a></li>
-                    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">Parte II en construcción</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">DOM Animation</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">DOM Events</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">DOM Event Listener</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">DOM Navigation</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">DOM Nodes</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">DOM Collections</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">DOM Node Lists</a></li>
 
 
 
@@ -91,44 +127,181 @@
                 <article class="docs-article" id="section-1">
                     <header class="docs-header">
                         <h1 class="docs-heading">JS HTML DOM - Avanzado <span class="docs-time">Última Actualización
-                                Fecha:  </span></h1>
-                        <section class="docs-intro" id="item-1-0">
-                            <p>Realizar un Portal Web (utilizando BootStrap) con el tema JS HTML DOM AVANZADO 
-							   (ANIMACIONES DOM, EVENTOS DOM, EVENTLISTENER DOM, NODE DOM, COLECCIONES DOM, LISTA DE NODOS DOM, NAVEGACION DOM)
-							   incluir ejemplos con sus respectivos resultados. </p>
-                        </section>
-                        
+                                Fecha: 2023/06/06 </span></h1>
+                    </header>    
 						
                         <section class="docs-intro" id="item-1-1">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean rhoncus sodales mollis.
-                                Suspendisse laoreet sapien quis lectus tincidunt aliquam. Nulla blandit tortor et justo
-                                condimentum, vitae tempor velit congue. Sed consectetur viverra est sed ultrices. Nulla
-                                condimentum erat velit, a consectetur nunc euismod in. Sed tincidunt nunc nec imperdiet
-                                egestas. Nunc gravida facilisis lorem, eu pellentesque augue. Nulla eu felis a est
-                                fringilla elementum. Donec fermentum ex odio, molestie dictum dui rutrum vel. Ut et
-                                lectus sit amet quam viverra auctor quis a ante. Vivamus convallis mollis diam ac
-                                scelerisque. Cras commodo urna fringilla, porttitor erat a, viverra quam. Proin ut odio
-                                dignissim, pulvinar leo vitae, euismod tellus. Vestibulum ante ipsum primis in faucibus
-                                orci luctus et ultrices posuere cubilia curae; In at nunc sit amet libero euismod
-                                euismod a vitae purus. </p>
+                            <h2 class="section-heading">DOM Animation</h2>
+                            <p>El DOM Animación se refiere a la capacidad de utilizar JavaScript para manipular y controlar elementos HTML y crear efectos y animaciones dinámicas en una página web. Permite cambiar propiedades como el tamaño, la posición, el color, la opacidad, entre otros, de elementos HTML en respuesta a eventos. Esto se logra utilizando métodos y propiedades del objeto `HTMLElement` y manipulando su estilo y atributos a través de JavaScript. El DOM Animación mejora la experiencia del usuario, agrega interactividad y dinamismo a una página web, y se puede lograr tanto con JavaScript puro como con bibliotecas y frameworks especializados. </p>
                         </section>
 
                         <!--//docs-intro-->
+                        <h4 class="heading" style="padding-top:1%">Ejemplo</h4>
 
                         <div class="docs-code-block">
-                            <pre class="shadow-lg rounded"><code class="javascript hljs"> EN CONSTRUCCION !!!!
-</code></pre>
+                            <pre class="shadow-lg rounded"><code class="javascript hljs">
+                                &lt;html&gt;
+                                &lt;style&gt;
+                                #container {
+                                  width: 400px;
+                                  height: 400px;
+                                  position: relative;
+                                  background: #f2f2f2;
+                              }
+                              #animate {
+                                  width: 50px;
+                                  height: 50px;
+                                  position: absolute;
+                                  background-color: #ff0000;
+                                  border-radius: 50%;
+                              }
+                              &lt;/style&gt;
+                              &lt;body&gt;
 
-                        </div>
+                              &lt;p&gt;&lt;button onclick="myMove()"&gt;Click Me&lt;/button&gt;&lt;/p&gt; 
+
+                              &lt;div id="container"&gt;
+                              &lt;div id="animate"&gt;&lt;/div&gt;
+                              &lt;/div&gt;
+
+                              &lt;script&gt;
+                              function myMove() {
+                                  let id = null;
+                                  const elem = document.getElementById("animate");   
+                                  let pos = 0;
+                                  clearInterval(id);
+                                  id = setInterval(frame, 5);
+                                  function frame() {
+                                    if (pos == 350) {
+                                      clearInterval(id);
+                                  } else {
+                                      pos++; 
+                                      elem.style.top = pos + "px"; 
+                                      elem.style.left = pos + "px"; 
+                                  }
+                              }
+                          }
+                          &lt;/script&gt;
+
+                          &lt;/body&gt;
+                          &lt;/html&gt;
+                      </code></pre>
+                  </div>
+                  <script>
+                    hljs.initHighlightingOnLoad();
+                </script>
+
+                <h3>Demo</h3>
+                <button onclick="toggleResult()">Mostrar resultado</button>
+                <div class="containerG" id="containerG">
+                    <div id="animate"></div>
+                    <!-- Contenido del resultado -->
+                </div>
+                <script>
+                    let isVisible = false;
+                    function toggleResult() {
+                      const containerG = document.getElementById('containerG');
+                      const animate = document.getElementById('animate');
+
+                // Alternar la visibilidad del contenido
+                      isVisible = !isVisible;
+                      containerG.style.display = isVisible ? 'none' : 'block';
+
+                // Cambiar la posición de la bolita al hacer clic en ella
+                      animate.onclick = function() {
+                        const maxX = containerG.offsetWidth - animate.offsetWidth;
+                        const maxY = containerG.offsetHeight - animate.offsetHeight;
+                        const newX = Math.floor(Math.random() * maxX);
+                        const newY = Math.floor(Math.random() * maxY);
+                        animate.style.left = newX + 'px';
+                        animate.style.top = newY + 'px';
+                    };
+                }
+            </script>
+
                         <!--//docs-code-block-->
 
 
-                    </header>
-
+                    
+ <!--//--------------------------------------------------------------------------------------------------------------------------------->
                     <section class="docs-section" id="item-1-1">
-                        <h2 class="section-heading">Lorem ipsum</h2>
+                        <h2 class="section-heading">DOM Events</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean rhoncus sodales mollis. Suspendisse laoreet sapien quis lectus tincidunt aliquam. Nulla blandit tortor et justo condimentum, vitae tempor velit congue. Sed consectetur viverra est sed ultrices. Nulla condimentum erat velit, a consectetur nunc euismod in. Sed tincidunt nunc nec imperdiet egestas. Nunc gravida facilisis lorem, eu pellentesque augue. Nulla eu felis a est fringilla elementum. Donec fermentum ex odio, molestie dictum dui rutrum vel. Ut et lectus sit amet quam viverra auctor quis a ante. Vivamus convallis mollis diam ac scelerisque. Cras commodo urna fringilla, porttitor erat a, viverra quam. Proin ut odio dignissim, pulvinar leo vitae, euismod tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In at nunc sit amet libero euismod euismod a vitae purus. </p>
                     </section>
+
+
+                    <h4 class="heading" style="padding-top:1%">Ejemplo</h4>
+                     <div class="docs-code-block">
+                            <pre class="shadow-lg rounded"><code class="javascript hljs">
+                     &lt;html&gt;
+                     &lt;head&gt;
+                       &lt;style&gt;
+                        .box {
+                          width: 100px;
+                          height: 100px;
+                          background-color: red;
+                          margin-bottom: 10px;
+                      }
+                   &lt;/style&gt;
+               &lt;/head&gt;
+               &lt;body&gt;
+                   &lt;div class="box" id="box1"&gt;&lt;/div&gt;
+                   &lt;div class="box" id="box2"&gt;&lt;/div&gt;
+
+                   &lt;script&gt;
+    // Obtener referencia a los elementos del DOM
+                    const box1 = document.getElementById('box1');
+                    const box2 = document.getElementById('box2');
+
+    // Agregar un event listener al primer cuadro (box1)
+                    box1.addEventListener('click', function() {
+                      box1.style.backgroundColor = 'blue';
+                  });
+
+    // Agregar un event listener al segundo cuadro (box2)
+                    box2.addEventListener('mouseenter', function() {
+                      box2.style.transform = 'scale(1.5)';
+                  });
+
+                    box2.addEventListener('mouseleave', function() {
+                      box2.style.transform = 'scale(1)';
+                  });
+               &lt;/script&gt;
+           &lt;/body&gt;
+           &lt;html&gt;
+</code></pre>
+</div>
+
+
+<h3>Demo</h3>
+<button onclick="toggleResult()">Mostrar resultado</button><br><br>
+
+<div class="box" id="box1"></div>
+                   <div class="box" id="box2"></div>
+
+                   <script>
+
+
+
+    // Obtener referencia a los elementos del DOM
+                    const box1 = document.getElementById('box1');
+                    const box2 = document.getElementById('box2');
+
+    // Agregar un event listener al primer cuadro (box1)
+                    box1.addEventListener('click', function() {
+                      box1.style.backgroundColor = 'blue';
+                  });
+
+    // Agregar un event listener al segundo cuadro (box2)
+                    box2.addEventListener('mouseenter', function() {
+                      box2.style.transform = 'scale(1.5)';
+                  });
+
+                    box2.addEventListener('mouseleave', function() {
+                      box2.style.transform = 'scale(1)';
+                  });
+               </script>
+
                     <footer class="footer">
                         <div class="container text-center py-5">
                             <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
