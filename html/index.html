@@ -142,49 +142,54 @@
                             <pre class="shadow-lg rounded"><code class="javascript hljs">
                                 &lt;html&gt;
                                 &lt;style&gt;
-                                #container {
-                                  width: 400px;
-                                  height: 400px;
+
+                                &lt;html&gt;
+                                &lt;style&gt;
+                                #miElemento {
+                                  width: 100px;
+                                  height: 100px;
+                                  background-color: red;
                                   position: relative;
-                                  background: #f2f2f2;
-                              }
-                              #animate {
-                                  width: 50px;
-                                  height: 50px;
-                                  position: absolute;
-                                  background-color: #ff0000;
-                                  border-radius: 50%;
-                              }
-                              &lt;/style&gt;
-                              &lt;body&gt;
+                                }
 
-                              &lt;p&gt;&lt;button onclick="myMove()"&gt;Click Me&lt;/button&gt;&lt;/p&gt; 
+                                .animado {
+                                  animation-duration: 2s;
+                                  animation-name: mover;
+                                  animation-iteration-count: infinite;
+                                }
 
-                              &lt;div id="container"&gt;
-                              &lt;div id="animate"&gt;&lt;/div&gt;
-                              &lt;/div&gt;
+                                @keyframes mover {
+                                  0% { left: 0; }
+                                  50% { left: 200px; top: 200px; }
+                                  100% { left: 0; }
+                                }
 
-                              &lt;script&gt;
-                              function myMove() {
-                                  let id = null;
-                                  const elem = document.getElementById("animate");   
-                                  let pos = 0;
-                                  clearInterval(id);
-                                  id = setInterval(frame, 5);
-                                  function frame() {
-                                    if (pos == 350) {
-                                      clearInterval(id);
+                                &lt;/style&gt;
+                                &lt;body&gt;
+
+                                &lt;div id="miElemento" class="animado"&gt;&lt;/div&gt;
+                                &lt;button onclick="animarElemento()"&gt;Animar&lt;/button&gt;
+
+                                &lt;script&gt;
+                                var animacionIniciada = false;
+
+                                function animarElemento() {
+                                  var elemento = document.getElementById("miElemento");
+
+                                  if (!animacionIniciada) {
+                                    elemento.classList.add("animado");
+                                    animacionIniciada = true;
                                   } else {
-                                      pos++; 
-                                      elem.style.top = pos + "px"; 
-                                      elem.style.left = pos + "px"; 
+                                    elemento.classList.remove("animado");
+                                    animacionIniciada = false;
                                   }
-                              }
-                          }
-                          &lt;/script&gt;
+                                }
+                                &lt;/script&gt;
 
-                          &lt;/body&gt;
-                          &lt;/html&gt;
+                                &lt;/body&gt;
+                                &lt;/html&gt;
+                                
+ 
                       </code></pre>
                   </div>
                   <script>
