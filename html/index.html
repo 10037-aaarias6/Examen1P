@@ -524,6 +524,52 @@
                         <section class="docs-section" id="item-1-5">
                         <h2 class="section-heading">DOM Nodes</h2>
                          <p>Los DOM Nodes son los elementos individuales que componen la estructura de un documento HTML o XML. Cada elemento, atributo, texto y comentario en un documento se representa como un nodo en el árbol del DOM. Los nodos del DOM pueden tener relaciones jerárquicas entre sí, formando una estructura en forma de árbol, donde cada nodo tiene un padre, hijos y posiblemente hermanos. Los diferentes tipos de nodos incluyen elementos HTML, texto, comentarios, atributos y más. Los nodos del DOM son la base para acceder, manipular y modificar la estructura y contenido de un documento web utilizando JavaScript u otras tecnologías basadas en el DOM. </p>
+
+                         <!--//docs-intro-->
+                        <h4 class="heading" style="padding-top:1%">Ejemplo</h4>
+
+                        <div class="docs-code-block">
+                            <pre class="shadow-lg rounded"><code class="javascript hljs">
+                               &lt;html&gt;
+                                &lt;head&gt;
+                                  &lt;title&gt;Ejemplo de DOM Node&lt;/title&gt;
+                                  &lt;script&gt;
+                                    function agregarLista() {
+                                      // Crear un nuevo elemento de tipo &lt;ul&gt;
+                                      var ulNode = document.createElement("ul");
+
+                                      // Crear un array con los textos de los elementos de lista
+                                      var elementos = ["Elemento 1", "Elemento 2", "Elemento 3"];
+
+                                      // Iterar sobre el array y crear elementos de lista &lt;li&gt;
+                                      elementos.forEach(function(texto) {
+                                        var liNode = document.createElement("li");
+                                        var textoNode = document.createTextNode(texto);
+                                        liNode.appendChild(textoNode);
+                                        ulNode.appendChild(liNode);
+                                      });
+
+                                      // Obtener el elemento existente antes del cual se va a agregar la lista
+                                      var contenedor = document.getElementById("contenedor");
+
+                                      // Agregar la lista antes del botón en el contenedor
+                                      contenedor.parentNode.insertBefore(ulNode, contenedor);
+                                    }
+                                  &lt;/script&gt;
+                                &lt;/head&gt;
+                                &lt;body&gt;
+                                  &lt;div id="contenedor"&gt;
+                                    &lt;!-- Aquí se agregarán los elementos de lista creados dinámicamente --&gt;
+                                  &lt;/div&gt;
+                                  &lt;button id="agregarBtn" onclick="agregarLista()"&gt;Agregar Lista&lt;/button&gt;
+                                &lt;/body&gt;
+                                &lt;/html&gt;
+                      </code></pre>
+                  </div>
+
+
+
+
                         <h3>Demo</h3>
 
                         <button onclick="toggleResultD()">Mostrar resultado</button>
@@ -576,8 +622,79 @@
                         <section class="docs-section" id="item-1-6">
                         <h2 class="section-heading">DOM Collections</h2>
                          <p>Los DOM Collections se refieren a conjuntos de nodos que comparten ciertas características o propiedades y se agrupan en una estructura de datos proporcionada por el DOM. Las colecciones DOM son similares a las listas o arrays en otros lenguajes de programación, y permiten acceder y manipular conjuntos de nodos de manera conveniente. Algunos ejemplos comunes de colecciones DOM son HTMLCollection y NodeList. HTMLCollection es una colección de nodos que representan los elementos HTML en un documento, mientras que NodeList es una colección de nodos devuelta por métodos como querySelectorAll() o getElementsByTagName(). Estas colecciones facilitan la iteración y manipulación de múltiples nodos a la vez, lo que resulta útil al realizar operaciones como seleccionar elementos, recorrer listas de nodos o aplicar cambios en masa a través de bucles o métodos de manipulación de la colección.</p>
+
+                        <!--//docs-intro-->
+                        <h4 class="heading" style="padding-top:1%">Ejemplo</h4>
+
+                        <div class="docs-code-block">
+                            <pre class="shadow-lg rounded"><code class="javascript hljs">
+                               &lt;html&gt;
+                                &lt;body&gt;
+
+                                &lt;h2&gt;FRUTAS&lt;/h2&gt;
+
+                                &lt;ul id="myList"&gt;
+                                  &lt;li&gt;Apple&lt;/li&gt;
+                                  &lt;li&gt;Banana&lt;/li&gt;
+                                  &lt;li&gt;Orange&lt;/li&gt;
+                                  &lt;li&gt;Mango&lt;/li&gt;
+                                &lt;/ul&gt;
+
+                                &lt;button onclick="changeListItems()"&gt;Change List Items&lt;/button&gt;
+
+                                &lt;script&gt;
+                                function changeListItems() {
+                                  const myList = document.getElementById("myList");
+                                  const listItems = myList.getElementsByTagName("li");
+                                  for (let i = 0; i &lt; listItems.length; i++) {
+                                    listItems[i].style.color = "blue";
+                                    listItems[i].style.fontWeight = "bold";
+                                  }
+                                }
+                                &lt;/script&gt;
+
+                                &lt;/body&gt;
+                                &lt;/html&gt;
+                      </code></pre>
+                  </div>
+
+
 <h3>Demo</h3>
-<button onclick="toggleResultE()">Mostrar resultado</button><br><br>
+
+
+<button onclick="toggleResultE()">Mostrar resultado</button>
+
+<span id="result4" style="display: none;">
+  <h2>FRUTAS</h2>
+  <ul id="myList4">
+    <li>Manzana</li>
+    <li>Plátano</li>
+    <li>Naranja</li>
+    <li>Mango</li>
+  </ul>
+  <button onclick="changeListItems()">Cambiar elementos de lista</button>
+</span>
+
+<script>
+function changeListItems() {
+  const myList = document.getElementById("myList4");
+  const listItems = myList.getElementsByTagName("li");
+  for (let i = 0; i < listItems.length; i++) {
+    listItems[i].style.color = "blue";
+    listItems[i].style.fontWeight = "bold";
+  }
+}
+
+function toggleResultE() {
+  const resultElement = document.getElementById("result4");
+  if (resultElement.style.display === "none") {
+    resultElement.style.display = "inline";
+  } else {
+    resultElement.style.display = "none";
+  }
+}
+</script>
+
 
                         <section class="docs-section" id="item-1-7">
                         <h2 class="section-heading">DOM Node List</h2>
